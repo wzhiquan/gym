@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="gym" extends="struts-default">
+		<!-- 用户模块 -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="login">login.jsp</result>
+			<result name="list">admin/user/list.jsp</result>
+			<result name="index">index.jsp</result>
+			<result name="listCourse">/admin/user/listCourse.jsp</result>
+			<result name="findTimes">/admin/user/listTime.jsp</result>
+			<result name="findMycourse">myCourse.jsp</result>
+			<result name="listOfChart">chart/listOfChart.jsp</result>
+			<result name="countAllUsers">chart/countAllUsers.jsp</result>
+		</action>
+		
+		<!-- 教练模块 -->
+		<action name="teacher_*" class="teacherAction" method="{1}">
+		    <result name="admin">/admin/home.jsp</result> <!--跳转到管理员管理界面  -->
+			<result name="teacher">/teacher/home.jsp</result><!-- 教练管理 -->
+			<result name="login">/teacher/login.jsp</result> <!--重新登录  -->
+			<result name="index" type="redirect">/index.jsp</result>
+			<result name="tolist" type="redirect">teacher_findAll</result>
+			<result name="list">/admin/teacher/list.jsp</result>
+			<result name="toEdit">/admin/teacher/edit.jsp</result>
+		</action>
+		
+		<!-- 课程模块 -->
+		<action name="course_*" class="courseAction" method="{1}">
+			<result name="noCourse">../null.jsp</result>
+			<result name="list">/admin/course/list.jsp</result>
+			<result name="toEdit">/admin/course/edit.jsp</result>
+			<result name="index">/index.jsp</result>
+			<result name="findByTid" type="redirectAction"></result>
+			<result name="courseList">courseList.jsp</result>
+			<result name="toAdd">/admin/course/add.jsp</result>
+			<result name="tolist" type="redirectAction">course_findAll</result>
+			<result name="findMyCourse" type="redirectAction">course_findMyCourse</result>
+			<result name="login" >/login.jsp</result>
+			<result name="findUser">/admin/teacher/userlist.jsp</result>
+			<result name="findUserByCourse">/teacher/userlist.jsp</result>
+			<result name="loglist">courselogList.jsp</result>
+		</action>
+		
+		<!-- 消息模块 -->
+		<action name="news_*" class="newsAction" method="{1}">
+			<result name="list">/admin/news/list.jsp</result>
+			<result name="toAdd">/admin/news/add.jsp</result>
+			<result name="tolist" type="redirectAction">news_findAll</result>
+			<result name="toEdit">/admin/news/edit.jsp</result>
+			<result name="newTypes">/newsType.jsp</result>
+			<result name="detail">/detail.jsp</result>
+			<result name="index">/index.jsp</result>
+			<result name="null"></result>
+		</action>
+		
+		<!-- 图表模块 -->
+        <action name="charts_*" class="chartsAction" method="{1}">
+           <result name="chartCourse">/chart/buyCourse.jsp</result>
+           <result name="initEnterUserData">/chart/enterUserData.jsp</result>
+           <result name="success">/chart/viewUserHealData.jsp</result>
+            <result name="healthCondition">/chart/healthCondition.jsp</result>
+        </action>
+		
+		
+	</package>
+</struts>
